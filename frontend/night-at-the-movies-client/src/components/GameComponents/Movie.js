@@ -1,8 +1,11 @@
 import React from 'react';
+import {Grid, Image} from 'semantic-ui-react';
 
-function Movie() {
+function Movie({movie}) {
   return (
-    <h1>Movie Card</h1>
+    <Grid.Column className="film">
+    <Image src={movie.image_thumb_url} rounded fluid/>
+    </Grid.Column>
   )
 }
 

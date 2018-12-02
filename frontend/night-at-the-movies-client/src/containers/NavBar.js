@@ -1,7 +1,18 @@
 import React from 'react';
+import {Menu} from 'semantic-ui-react';
+// https://react.semantic-ui.com/collections/menu/#types-basic
 
 function NavBar() {
-  return (<h1>Welcome to Night @ The Movies!</h1>)
+  return (
+    <React.Fragment>
+    <h1>Welcome to Night @ The Movies!</h1>
+    <Menu>
+      <Menu.Item name="Home" active={true} ></Menu.Item>
+      <Menu.Item name="Boop" active={false} ></Menu.Item>
+      <Menu.Item name="Gotcha!" active={false} ></Menu.Item>
+    </Menu>
+    </React.Fragment>
+  )
 }
 
 

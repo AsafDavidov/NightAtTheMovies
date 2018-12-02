@@ -12,3 +12,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.film {
+  background-image: url('https://cdn.pixabay.com/photo/2014/03/25/15/24/movie-296751_960_720.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
