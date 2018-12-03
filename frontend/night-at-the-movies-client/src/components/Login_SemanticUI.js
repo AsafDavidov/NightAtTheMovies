@@ -1,25 +1,10 @@
 import React from 'react';
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
-import {Grommet} from 'grommet';
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
 // popcorn png image: https://www.flaticon.com/free-icon/popcorn_705062
 
-// Grommet theme - modify & use if we want to change styling on the form
-// const theme = {
-//   global: {
-//     font: {
-//       family: 'Roboto',
-//       size: '14px',
-//       height: '20px',
-//     },
-//   },
-// };
-
-
-
 function Login(props) {
   return (
-
     <div className='login-form'>
     {/*
       Heads up! The styles below are necessary for the correct render of this example.
@@ -36,7 +21,7 @@ function Login(props) {
       <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center'>
-            <Image src='https://image.flaticon.com/icons/svg/705/705062.svg' className="App-logo "/> Log-in to your account
+            <Image src='https://image.flaticon.com/icons/svg/705/705062.svg' /> Log-in to your account
           </Header>
           <Form size='large' onSubmit={props.handleLogin}>
             <Segment stacked>
@@ -60,7 +45,6 @@ function Login(props) {
         </Grid.Column>
       </Grid>
     </div>
-
   )
 }
 // function Login() {

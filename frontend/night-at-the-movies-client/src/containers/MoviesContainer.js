@@ -26,24 +26,25 @@ class MoviesContainer extends Component {
     return this.state.movies.slice(startIndex, endIndex)
   }
 
-  handleMoreMovies = () => {
-    this.setState(prevState => {
-      let newIndex;
-      if (prevState.movieIndex+3 > prevState.movies.length) {
-        newIndex = 0
-      } else {
-        newIndex = prevState.movieIndex + 3
-      }
-      return {movieIndex: newIndex}
-    })
-  }
+// Grommet carousel made this fn obsolete
+  // handleMoreMovies = () => {
+  //   this.setState(prevState => {
+  //     let newIndex;
+  //     if (prevState.movieIndex+3 > prevState.movies.length) {
+  //       newIndex = 0
+  //     } else {
+  //       newIndex = prevState.movieIndex + 3
+  //     }
+  //     return {movieIndex: newIndex}
+  //   })
+  // }
 
   render() {
     return (
       <div className="Movies-Container">
         <p>Movies Container</p>
         <ViewStats />
-        <GameContainer movies={this.moviesToDisplay()} handleMoreMovies={this.handleMoreMovies}/>
+        <GameContainer movies={this.moviesToDisplay()}/>
       </div>
     )
   }

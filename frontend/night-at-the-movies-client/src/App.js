@@ -13,10 +13,10 @@ class App extends Component {
           <Container>
             <NavBar />
           </Container>
-          <Container>
-            <HomeContainer />
-          </Container>
         </header>
+          <Container>
+          <HomeContainer />
+          </Container>
       </div>
     );
   }
