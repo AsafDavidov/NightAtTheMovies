@@ -4,9 +4,13 @@ import { Image } from 'grommet';
 
 function Movie({movie, handleSelectMovie}) {
   return (
-    <Image src={movie.image_large_url} width="600px" onClick={()=> handleSelectMovie(movie.id)}/>
+    <div height="400px" onClick={()=> handleSelectMovie(movie.id)}>
+      <h4>{movie.content}</h4>
+    </div>
   )
 }
+// <Image src={movie.img_url} height="500px" onClick={()=> handleSelectMovie(movie.id)}/>
+
 // function Movie({movie}) {
 //   return (
 //     <Grid.Column className="film">

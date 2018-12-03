@@ -7,7 +7,8 @@ import MovieDetails from '../components/GameComponents/MovieDetails';
 class GameContainer extends React.Component {
   state ={
     selectedMovieId: null,
-    answerInput: ''
+    answerInput: '',
+    selectedHints: []
   }
 
   handleAnswer = (e) => {
@@ -18,6 +19,12 @@ class GameContainer extends React.Component {
     e.preventDefault();
     console.log('in handleSubmit',e.target.parentElement);
     debugger;
+  }
+
+  handleHint = (hintNum) => {
+    if (!this.state.selectedHints.includes(hintNum)) {
+      this.setState((prevState)=>({selectedHints: [...prevState.selectedHints, hintNum]}))
+    }
   }
 
   handleSelectMovie = (id) => {
@@ -45,6 +52,8 @@ class GameContainer extends React.Component {
         answerInput={this.state.answerInput}
         handleAnswer={this.handleAnswer}
         handleSubmit={this.handleSubmit}
+        handleHint={this.handleHint}
+        selectedHints={this.state.selectedHints}
         /> : null}
       </div>
     )

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ViewStats from '../components/ViewStats';
 import GameContainer from './GameContainer';
 
-const MOVIE_URL = 'http://localhost:4000/movies'
+const MOVIE_URL = 'http://localhost:4000/api/v1/movie_quotes'
 
 class MoviesContainer extends Component {
   state = {
@@ -22,7 +22,7 @@ class MoviesContainer extends Component {
 
   moviesToDisplay() {
     let startIndex = this.state.movieIndex
-    let endIndex = this.state.movieIndex + 3
+    let endIndex = this.state.movieIndex + 10
     return this.state.movies.slice(startIndex, endIndex)
   }
 
