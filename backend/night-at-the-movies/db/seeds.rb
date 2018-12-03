@@ -31,7 +31,6 @@ def youtube_search(query_term)
         first_hit = document.css("a").map {|a| a['href']}.select {|link| link.include?("watch")&& link.length == 20}.first
         first_hit_url = "https://www.youtube.com/#{first_hit}"
 end
-
 i=1
 10.times do
   filter = MovieQuotes.new
@@ -40,5 +39,4 @@ i=1
   end
   i = i+1
 end
-
 #####################################SEEDING CUSTOMIZED MOVIE QUOTE API#########################################
