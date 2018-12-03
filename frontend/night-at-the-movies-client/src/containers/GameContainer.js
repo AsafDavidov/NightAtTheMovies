@@ -14,6 +14,12 @@ class GameContainer extends React.Component {
     this.setState({answerInput: e.target.value})
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('in handleSubmit',e.target.parentElement);
+    debugger;
+  }
+
   handleSelectMovie = (id) => {
     console.log('in handleSelectMovie', id);
     this.setState({selectedMovieId: id}, ()=>console.log('in handleSelectMovie', this.state))
@@ -29,8 +35,17 @@ class GameContainer extends React.Component {
       <h1>GameContainer Page</h1>
       <Timer />
       <PopBar />
-      <MovieCarousel movies={this.props.movies} handleSelectMovie={this.handleSelectMovie} selectedMovieId={this.state.selectedMovieId}/>
-      {this.state.selectedMovieId ? <MovieDetails movie={this.findSelectedMovieObj()} answerInput={this.state.answerInput} handleAnswer={this.handleAnswer}/> : null}
+      <MovieCarousel
+      movies={this.props.movies}
+      handleSelectMovie={this.handleSelectMovie}
+      selectedMovieId={this.state.selectedMovieId}
+      />
+      {this.state.selectedMovieId ? <MovieDetails
+        movie={this.findSelectedMovieObj()}
+        answerInput={this.state.answerInput}
+        handleAnswer={this.handleAnswer}
+        handleSubmit={this.handleSubmit}
+        /> : null}
       </div>
     )
   }

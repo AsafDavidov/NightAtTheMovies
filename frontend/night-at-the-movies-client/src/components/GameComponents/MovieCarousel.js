@@ -55,7 +55,7 @@ import Carousel from 'nuka-carousel';
 
 function MovieCarousel(props) {
   return (
-    <Carousel>
+    <Carousel disableKeyboardControls={true}>
     {props.movies.map((movie, index) => <Movie key={index} movie={movie} handleSelectMovie={props.handleSelectMovie} selectedMovieId={props.selectedMovieId}/>)}
     </Carousel>
   )
