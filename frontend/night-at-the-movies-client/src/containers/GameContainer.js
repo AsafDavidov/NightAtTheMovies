@@ -29,7 +29,7 @@ class GameContainer extends React.Component {
 
   handleSelectMovie = (id) => {
     console.log('in handleSelectMovie', id);
-    this.setState({selectedMovieId: id}, ()=>console.log('in handleSelectMovie', this.state))
+    this.setState({selectedMovieId: id, selectedHints: []}, ()=>console.log('in handleSelectMovie', this.state))
   }
 
   findSelectedMovieObj = () => {

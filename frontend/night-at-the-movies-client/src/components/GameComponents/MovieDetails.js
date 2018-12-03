@@ -1,20 +1,33 @@
 import React from 'react';
 import { Box, FormField, TextInput, Button } from 'grommet';
+import YouTube from 'react-youtube';
 
 const showHint = (array, movie) => {
-  console.log('in showHint',array);
+  const opts = {
+      height: '390',
+      width: '640',
+      playerVars: {
+        autoplay: 1
+      }
+  };
+
   return array.map((hint, index) => {
     if (hint === 1) {
-      return <p key={index}>CHARACTER: {movie.character}</p>
+      return <p key={index}>CHARACTERS: {movie.character}</p>
     } else if (hint === 2) {
       return <p key={index}>YEAR: {movie.year}</p>
     } else if (hint === 3) {
-      return <p key={index}>VIDEO: {movie.vid_url}</p>
+      return <YouTube
+        videoId={movie.vid_url.split('=')[1]}
+        opts={opts}
+      />
     }
   });
 }
 
 function MovieDetails({movie, answerInput, handleAnswer, handleSubmit, handleHint, selectedHints}) {
+
+
   return (
     <React.Fragment>
     <h1>MovieDetails</h1>

@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import ViewStats from '../components/ViewStats';
 import GameContainer from './GameContainer';
+import { Button } from 'grommet';
 
 const MOVIE_URL = 'http://localhost:4000/api/v1/movie_quotes'
 
 class MoviesContainer extends Component {
   state = {
     movies: [],
-    movieIndex: 0
+    movieIndex: 0,
+    currentPage: 'home'
   }
 
   componentDidMount(){
@@ -26,25 +28,33 @@ class MoviesContainer extends Component {
     return this.state.movies.slice(startIndex, endIndex)
   }
 
-// Grommet carousel made this fn obsolete
-  // handleMoreMovies = () => {
-  //   this.setState(prevState => {
-  //     let newIndex;
-  //     if (prevState.movieIndex+3 > prevState.movies.length) {
-  //       newIndex = 0
-  //     } else {
-  //       newIndex = prevState.movieIndex + 3
-  //     }
-  //     return {movieIndex: newIndex}
-  //   })
-  // }
+  displayView = () => {
+    switch (this.state.currentPage) {
+      case 'home':
+        return (
+          <React.Fragment>
+            <Button label="View Stats"onClick={()=>this.changeView('stats')}/>
+            <Button label="Start Game"onClick={()=>this.changeView('game')}/>
+          </React.Fragment>
+        );
+      case 'stats':
+        return <ViewStats />
+      case 'game':
+        return <GameContainer movies={this.moviesToDisplay()}/>
+    }
+  }
+
+  changeView = (newView) => {
+    this.setState({currentPage: newView})
+  }
+
+
 
   render() {
     return (
       <div className="Movies-Container">
         <p>Movies Container</p>
-        <ViewStats />
-        <GameContainer movies={this.moviesToDisplay()}/>
+        {this.displayView()}
       </div>
     )
   }
