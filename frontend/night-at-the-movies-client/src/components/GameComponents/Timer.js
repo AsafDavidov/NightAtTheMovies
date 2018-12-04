@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Timer() {
+function Timer({time,handleStopTime}) {
   return (
-    <h1>Timer Box</h1>
+    <h1 onClick={handleStopTime}>Current Time Taken: {time}</h1>
   )
 }
 

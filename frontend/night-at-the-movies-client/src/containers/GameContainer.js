@@ -11,7 +11,9 @@ class GameContainer extends React.Component {
     selectedMovieId: null,
     answerInput: '',
     selectedHints: [],
-    points: 0
+    points: 0,
+    timer:0,
+    timerID:null
   }
 
   handleAnswer = (e) => {
@@ -42,7 +44,14 @@ class GameContainer extends React.Component {
     this.props.handleNextMovieIndex()
     // debugger;
   }
-
+  componentDidMount(){
+    let timeID = setInterval(()=>{
+      this.setState(()=>{
+        return {timer: this.state.timer + 1}
+      })
+    },1000)
+    this.setState({timerID:timeID})
+  }
   handleHint = (hintNum) => {
     if (!this.state.selectedHints.includes(hintNum)) {
       this.setState((prevState)=>({selectedHints: [...prevState.selectedHints, hintNum]}))
@@ -57,12 +66,16 @@ class GameContainer extends React.Component {
   findSelectedMovieObj = () => {
     return this.props.movies.find(movie => movie.id === this.state.selectedMovieId);
   }
-
+  handleStopTime = () => {
+    clearInterval(this.state.timerID)
+  }
   render() {
     return (
       <div className="GameContainer">
       <h1>GameContainer Page</h1>
-      <Timer />
+      <Timer time={this.state.timer}
+      handleStopTime={this.handleStopTime}
+      />
       <MovieCarousel
       movies={this.props.movies}
       handleSelectMovie={this.handleSelectMovie}
