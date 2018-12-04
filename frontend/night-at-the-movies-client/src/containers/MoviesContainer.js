@@ -19,7 +19,8 @@ class MoviesContainer extends Component {
   state = {
     movies: [],
     movieIndex: 0,
-    currentPage: 'home'
+    currentPage: 'home',
+    latestScore: null
   }
 
   componentDidMount(){
@@ -40,7 +41,14 @@ class MoviesContainer extends Component {
 
   handleNextMovieIndex = () => {
     this.setState((prevState) => ({movieIndex: prevState.movieIndex + 5}))
+  }
 
+  handleLatestScore = (newScore) => {
+    this.setState({latestScore: newScore})
+  }
+
+  displayScore = () => {
+    return this.state.latestScore ? <h1>Your score is: {this.state.latestScore}</h1> : null
   }
 
   displayView = () => {
@@ -57,7 +65,7 @@ class MoviesContainer extends Component {
       case 'game':
         return (
           <AlertProvider template={AlertTemplate} {...options}>
-            <GameContainer movies={this.moviesToDisplay()} handleNextMovieIndex={this.handleNextMovieIndex}/>
+            <GameContainer movies={this.moviesToDisplay()} handleNextMovieIndex={this.handleNextMovieIndex} handleLatestScore={this.handleLatestScore}/>
           </AlertProvider>
         )
     }
@@ -70,7 +78,7 @@ class MoviesContainer extends Component {
   render() {
     return (
       <div className="Movies-Container">
-        <p>Movies Container</p>
+        {this.displayScore()}
         {this.displayView()}
       </div>
     )

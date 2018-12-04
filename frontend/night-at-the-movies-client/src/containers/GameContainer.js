@@ -5,6 +5,7 @@ import MovieCarousel from '../components/GameComponents/MovieCarousel';
 import MovieDetails from '../components/GameComponents/MovieDetails';
 import { withAlert } from 'react-alert';
 import { Alert } from 'react-alert';
+// import AlertTemplate from "react-alert-template-basic";
 
 class GameContainer extends React.Component {
   state ={
@@ -12,6 +13,7 @@ class GameContainer extends React.Component {
     answerInput: '',
     selectedHints: [],
     points: 0,
+    alertStatus:null,
     timer:0,
     timerID:null
   }
@@ -28,7 +30,8 @@ class GameContainer extends React.Component {
         points: prevState.points + 10,
         selectedMovieId: null,
         answerInput: '',
-        selectedHints: []
+        selectedHints: [],
+        alertStatus: 'correct'
         })
       )
     } else {
@@ -37,7 +40,8 @@ class GameContainer extends React.Component {
         return {...prevState,
           selectedMovieId: null,
           answerInput: '',
-          selectedHints: []
+          selectedHints: [],
+          alertStatus: 'incorrect'
          }
       })
     }
@@ -60,12 +64,13 @@ class GameContainer extends React.Component {
 
   handleSelectMovie = (id) => {
     console.log('in handleSelectMovie', id);
-    this.setState({selectedMovieId: id, selectedHints: []}, ()=>console.log('in handleSelectMovie', this.state))
+    this.setState({selectedMovieId: id, selectedHints: [], alertStatus: null})
   }
 
   findSelectedMovieObj = () => {
     return this.props.movies.find(movie => movie.id === this.state.selectedMovieId);
   }
+<<<<<<< HEAD
   handleStopTime = () => {
     clearInterval(this.state.timerID)
   }
@@ -90,13 +95,48 @@ class GameContainer extends React.Component {
         selectedHints={this.state.selectedHints}
         /> : null}
         <PopBar score={this.state.currentScore}/>
+=======
+
+  // displayAlert = (alert) => {
+  //     let currentStatus = this.state.alertStatus
+  //     this.setState({alertStatus:null},alert.show('oh lookey an alert', {type:"success"}))
+  //      if (this.state.alertStatus === 'correct') {
+  //         alert.show('oh lookey an alert', {type:"success"})
+  //       }else if (this.state.alertStatus === 'incorrect') {
+  //         console.log("here2");
+  //         alert.show('oh lookey an alert2', {type:"success"})
+  //       } else return null
+  // }
+
+  render() {
+    return (
+      <div className="GameContainer">
+        <h1>GameContainer Page</h1>
+        <Timer />
+        <MovieCarousel
+        movies={this.props.movies}
+        handleSelectMovie={this.handleSelectMovie}
+        selectedMovieId={this.state.selectedMovieId}
+        />
+        <div>
+          {this.state.selectedMovieId ? <MovieDetails
+            movie={this.findSelectedMovieObj()}
+            answerInput={this.state.answerInput}
+            handleAnswer={this.handleAnswer}
+            handleSubmit={this.handleSubmit}
+            handleHint={this.handleHint}
+            selectedHints={this.state.selectedHints}
+            />:null}
+        </div>
+          <PopBar score={this.state.points}/>
+>>>>>>> 923f0a86fafbd2c293880d093cdcacbf622a3cd5
       </div>
     )
   }
 }
 
-// <Alert>
-// {alert => (alert.show('Oh look, an alert!'))}
-// </Alert>
 
+// <Alert>
+// {(alert)=>this.displayAlert(alert)}
+// </Alert>
 export default GameContainer;
