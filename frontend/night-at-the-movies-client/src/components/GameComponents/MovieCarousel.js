@@ -20,7 +20,6 @@ class MovieCarousel extends React.Component {
 
 
   render() {
-    console.log('in Movie Carousel', this.props.movies);
     return (
         <Carousel disableKeyboardControls={true}>
           {this.props.movies.map((movie, index) => <Movie key={index} movie={movie} handleSelectMovie={this.props.handleSelectMovie} selectedMovieId={this.props.selectedMovieId}/>)}

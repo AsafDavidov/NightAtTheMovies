@@ -12,6 +12,7 @@ class GameContainer extends React.Component {
     selectedMovieId: null,
     answerInput: '',
     selectedHints: [],
+    questionsAnswered:0,
     points: 0,
     timer:0,
     timerID:null
@@ -35,18 +36,31 @@ class GameContainer extends React.Component {
     if (movie.title.toLowerCase().includes(this.state.answerInput.toLowerCase())){
       this.setState((prevState) => {
         return {
-        points: prevState.points + 10,
+        points: prevState.points + 20,
+        questionsAnswered: prevState.questionsAnswered + 1,
         selectedMovieId: null,
         answerInput: '',
         selectedHints: []}
-      },()=>this.props.alert.show('Correct! Nice Job!',{type:"success"}))
+      },()=>{
+        this.props.alert.show('Correct! Nice Job!',{type:"success"})
+        if (this.state.questionsAnswered === 5 || this.state.points === 100) {
+          this.handleStopTime()
+        }})
+
     } else {
       this.setState((prevState) => {
          return {
           selectedMovieId: null,
           answerInput: '',
-          selectedHints: []}
-      },()=>this.props.alert.show('Oof must have been a typo',{type:"error"}))
+          selectedHints: [],
+          questionsAnswered: prevState.questionsAnswered + 1}
+      },()=>{
+        console.log("hit incorrect");
+        this.props.alert.show('Oof must have been a typo',{type:"error"})
+        console.log(this.state.questionsAnswered);
+        if (this.state.questionsAnswered === 5 || this.state.points === 100) {
+          this.handleStopTime()
+        }})
     }
     this.props.handleNextMovieIndex()
   }
@@ -67,6 +81,7 @@ class GameContainer extends React.Component {
 
   handleStopTime = () => {
     clearInterval(this.state.timerID)
+    this.props.handleLatestScore(this.state.timer)
   }
 
   render() {

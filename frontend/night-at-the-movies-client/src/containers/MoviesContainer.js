@@ -37,7 +37,7 @@ class MoviesContainer extends Component {
 
   postGameStat = () => {
     let data = {user_id: this.props.user.id, time_taken: this.state.latestScore}
-    console.log('in postGameStat',data);
+    
     fetch(GAME_URL, {
       method: 'POST',
       headers: {"Content-Type": "application/json; charset=utf-8"},
