@@ -41,8 +41,6 @@ class GameContainer extends React.Component {
         selectedHints: []}
       },()=>this.props.alert.show('Correct! Nice Job!',{type:"success"}))
     } else {
-      // alert.show('Oh look, an alert!')
-      console.log("in heresfasdf");
       this.setState((prevState) => {
          return {
           selectedMovieId: null,
