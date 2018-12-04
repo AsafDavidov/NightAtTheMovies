@@ -3,12 +3,15 @@ import Timer from '../components/GameComponents/Timer';
 import PopBar from '../components/GameComponents/PopBar';
 import MovieCarousel from '../components/GameComponents/MovieCarousel';
 import MovieDetails from '../components/GameComponents/MovieDetails';
+import { withAlert } from 'react-alert';
+import { Alert } from 'react-alert';
 
 class GameContainer extends React.Component {
   state ={
     selectedMovieId: null,
     answerInput: '',
-    selectedHints: []
+    selectedHints: [],
+    points: 0
   }
 
   handleAnswer = (e) => {
@@ -17,8 +20,27 @@ class GameContainer extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('in handleSubmit',e.target.parentElement);
-    debugger;
+    const movie = this.findSelectedMovieObj()
+    if (movie.title.toLowerCase().includes(this.state.answerInput.toLowerCase())){
+      this.setState((prevState) => ({
+        points: prevState.points + 10,
+        selectedMovieId: null,
+        answerInput: '',
+        selectedHints: []
+        })
+      )
+    } else {
+      // alert.show('Oh look, an alert!')
+      this.setState((prevState) => {
+        return {...prevState,
+          selectedMovieId: null,
+          answerInput: '',
+          selectedHints: []
+         }
+      })
+    }
+    this.props.handleNextMovieIndex()
+    // debugger;
   }
 
   handleHint = (hintNum) => {
@@ -59,5 +81,9 @@ class GameContainer extends React.Component {
     )
   }
 }
+
+// <Alert>
+// {alert => (alert.show('Oh look, an alert!'))}
+// </Alert>
 
 export default GameContainer;

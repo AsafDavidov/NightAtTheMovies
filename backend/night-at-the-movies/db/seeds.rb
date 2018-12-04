@@ -7,16 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 # Sample Ruby code for user authorization
 #
-# t.string "content"
-# t.integer "year"
-# t.integer "rating"
-# t.string "title"
-# t.string "character"
-# t.string "actor"
-# t.string "img_url"
-# t.string "vid_url"
-# t.datetime "created_at", null: false
-# t.datetime "updated_at", null: false
 require 'nokogiri'
 require 'open-uri'
 require 'rest-client'
@@ -29,7 +19,6 @@ def youtube_search(query_term)
         url = "https://www.youtube.com/results?search_query=#{query_term}"
         document = Nokogiri::HTML(RestClient.get(url))
         first_hit = document.css("a").map {|a| a['href']}.select {|link| link.include?("watch")&& link.length == 20}.first
-        first_hit_url = "https://www.youtube.com/#{first_hit}"
 end
 i=1
 10.times do

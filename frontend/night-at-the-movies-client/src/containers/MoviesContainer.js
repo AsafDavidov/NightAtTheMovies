@@ -2,8 +2,18 @@ import React, {Component} from 'react';
 import ViewStats from '../components/ViewStats';
 import GameContainer from './GameContainer';
 import { Button } from 'grommet';
+import { Provider as AlertProvider } from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
 
 const MOVIE_URL = 'http://localhost:4000/api/v1/movie_quotes'
+
+const options = {
+  position: 'bottom center',
+  timeout: 2000,
+  offset: '30px',
+  transition: 'scale'
+}
+
 
 class MoviesContainer extends Component {
   state = {
@@ -24,8 +34,13 @@ class MoviesContainer extends Component {
 
   moviesToDisplay() {
     let startIndex = this.state.movieIndex
-    let endIndex = this.state.movieIndex + 10
+    let endIndex = this.state.movieIndex + 5
     return this.state.movies.slice(startIndex, endIndex)
+  }
+
+  handleNextMovieIndex = () => {
+    this.setState((prevState) => ({movieIndex: prevState.movieIndex + 5}))
+
   }
 
   displayView = () => {
@@ -40,7 +55,11 @@ class MoviesContainer extends Component {
       case 'stats':
         return <ViewStats />
       case 'game':
-        return <GameContainer movies={this.moviesToDisplay()}/>
+        return (
+          <AlertProvider template={AlertTemplate} {...options}>
+            <GameContainer movies={this.moviesToDisplay()} handleNextMovieIndex={this.handleNextMovieIndex}/>
+          </AlertProvider>
+        )
     }
   }
 
