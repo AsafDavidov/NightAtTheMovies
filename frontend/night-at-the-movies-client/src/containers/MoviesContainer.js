@@ -5,7 +5,9 @@ import { Button } from 'grommet';
 import { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 
-const MOVIE_URL = 'http://localhost:4000/api/v1/movie_quotes'
+const BASE = 'http://localhost:4000/api/v1/'
+const MOVIE_URL = BASE+'movie_quotes'
+const GAME_URL = BASE+'games'
 
 const options = {
   position: 'bottom center',
@@ -33,8 +35,22 @@ class MoviesContainer extends Component {
       .then(data => this.setState({movies: data}))
   }
 
+  postGameStat = () => {
+    let data = {user_id: this.props.user.id, time_taken: this.state.latestScore}
+    console.log('in postGameStat',data);
+    fetch(GAME_URL, {
+      method: 'POST',
+      headers: {"Content-Type": "application/json; charset=utf-8"},
+      body: JSON.stringify(data)
+    })
+  }
+
   moviesToDisplay() {
     let startIndex = this.state.movieIndex
+    if (startIndex === 200) {
+      startIndex = 0
+      this.setState({movieIndex: 0})
+    }
     let endIndex = this.state.movieIndex + 5
     return this.state.movies.slice(startIndex, endIndex)
   }
@@ -44,21 +60,25 @@ class MoviesContainer extends Component {
   }
 
   handleLatestScore = (newScore) => {
-    this.setState({latestScore: newScore})
+    this.setState({latestScore: newScore}, ()=>{
+      this.postGameStat()
+      this.changeView('home')
+    })
   }
 
   displayScore = () => {
-    return this.state.latestScore ? <h1>Your score is: {this.state.latestScore}</h1> : null
+    return this.state.latestScore ? <h1>Your latest score is: {this.state.latestScore}</h1> : null
   }
 
   displayView = () => {
     switch (this.state.currentPage) {
       case 'home':
         return (
-          <React.Fragment>
+          <div>
+            {this.displayScore()}
             <Button label="View Stats"onClick={()=>this.changeView('stats')}/>
             <Button label="Start Game"onClick={()=>this.changeView('game')}/>
-          </React.Fragment>
+          </div>
         );
       case 'stats':
         return <ViewStats />
@@ -78,7 +98,6 @@ class MoviesContainer extends Component {
   render() {
     return (
       <div className="Movies-Container">
-        {this.displayScore()}
         {this.displayView()}
       </div>
     )

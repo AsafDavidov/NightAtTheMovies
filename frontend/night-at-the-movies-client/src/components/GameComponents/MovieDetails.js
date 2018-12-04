@@ -23,14 +23,13 @@ const showHint = (array, movie) => {
       /></div>
     }
   });
-}
+} // end showHint
 
 function MovieDetails({movie, answerInput, handleAnswer, handleSubmit, handleHint, selectedHints}) {
 
 
   return (
     <React.Fragment>
-    <h1>MovieDetails</h1>
     <Button label="Hint 1" onClick={()=>handleHint(1)}/>
     <Button label="Hint 2" onClick={()=>handleHint(2)}/>
     <Button label="Hint 3" onClick={()=>handleHint(3)}/>

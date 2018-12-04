@@ -41,22 +41,12 @@ function Login(props) {
           <Form size='large' onSubmit={props.handleLogin}>
             <Segment stacked>
               <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' />
-              <Form.Input
-                fluid
-                icon='lock'
-                iconPosition='left'
-                placeholder='Password'
-                type='password'
-              />
 
               <Button color='teal' fluid size='large'>
-                Login
+                Login/SignUp
               </Button>
             </Segment>
           </Form>
-          <Message>
-            New to us? <a href='#'>Sign Up</a>
-          </Message>
         </Grid.Column>
       </Grid>
     </div>

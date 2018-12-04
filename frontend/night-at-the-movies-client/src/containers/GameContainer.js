@@ -15,7 +15,8 @@ class GameContainer extends React.Component {
     points: 0,
     alertStatus:null,
     timer:0,
-    timerID:null
+    timerID:null,
+    questionsAnswered: 0
   }
 
   handleAnswer = (e) => {
@@ -25,24 +26,36 @@ class GameContainer extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const movie = this.findSelectedMovieObj()
+    console.log('in handleSubmit');
     if (movie.title.toLowerCase().includes(this.state.answerInput.toLowerCase())){
       this.setState((prevState) => ({
-        points: prevState.points + 10,
+        points: prevState.points + 20,
+        questionsAnswered: prevState.questionsAnswered + 1,
         selectedMovieId: null,
         answerInput: '',
         selectedHints: [],
         alertStatus: 'correct'
-        })
+        }), ()=>{
+          if (this.state.questionsAnswered === 5 || this.state.points === 100) {
+          this.handleStopTime()
+          }
+        }
       )
     } else {
       // alert.show('Oh look, an alert!')
-      this.setState((prevState) => {
-        return {...prevState,
+      this.setState((prevState) =>({
+          questionsAnswered: prevState.questionsAnswered + 1,
           selectedMovieId: null,
           answerInput: '',
           selectedHints: [],
           alertStatus: 'incorrect'
-         }
+         })
+      ,()=>{
+        console.log('in cb',this.state.questionsAnswered);
+        if (this.state.questionsAnswered === 5 || this.state.points === 100) {
+          console.log('in the cb');
+          this.handleStopTime()
+        }
       })
     }
     this.props.handleNextMovieIndex()
@@ -70,32 +83,11 @@ class GameContainer extends React.Component {
   findSelectedMovieObj = () => {
     return this.props.movies.find(movie => movie.id === this.state.selectedMovieId);
   }
-<<<<<<< HEAD
+
   handleStopTime = () => {
     clearInterval(this.state.timerID)
+    this.props.handleLatestScore(this.state.timer)
   }
-  render() {
-    return (
-      <div className="GameContainer">
-      <h1>GameContainer Page</h1>
-      <Timer time={this.state.timer}
-      handleStopTime={this.handleStopTime}
-      />
-      <MovieCarousel
-      movies={this.props.movies}
-      handleSelectMovie={this.handleSelectMovie}
-      selectedMovieId={this.state.selectedMovieId}
-      />
-      {this.state.selectedMovieId ? <MovieDetails
-        movie={this.findSelectedMovieObj()}
-        answerInput={this.state.answerInput}
-        handleAnswer={this.handleAnswer}
-        handleSubmit={this.handleSubmit}
-        handleHint={this.handleHint}
-        selectedHints={this.state.selectedHints}
-        /> : null}
-        <PopBar score={this.state.currentScore}/>
-=======
 
   // displayAlert = (alert) => {
   //     let currentStatus = this.state.alertStatus
@@ -111,8 +103,8 @@ class GameContainer extends React.Component {
   render() {
     return (
       <div className="GameContainer">
-        <h1>GameContainer Page</h1>
-        <Timer />
+        <Timer time={this.state.timer}
+        handleStopTime={this.handleStopTime}/>
         <MovieCarousel
         movies={this.props.movies}
         handleSelectMovie={this.handleSelectMovie}
@@ -126,10 +118,9 @@ class GameContainer extends React.Component {
             handleSubmit={this.handleSubmit}
             handleHint={this.handleHint}
             selectedHints={this.state.selectedHints}
-            />:null}
+            /> : null}
         </div>
           <PopBar score={this.state.points}/>
->>>>>>> 923f0a86fafbd2c293880d093cdcacbf622a3cd5
       </div>
     )
   }
