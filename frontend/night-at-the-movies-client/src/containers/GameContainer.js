@@ -13,9 +13,16 @@ class GameContainer extends React.Component {
     answerInput: '',
     selectedHints: [],
     points: 0,
-    alertStatus:null,
     timer:0,
     timerID:null
+  }
+  componentDidMount(){
+    let timeID = setInterval(()=>{
+      this.setState(()=>{
+        return {timer: this.state.timer + 1}
+      })
+    },1000)
+    this.setState({timerID:timeID})
   }
 
   handleAnswer = (e) => {
@@ -26,35 +33,24 @@ class GameContainer extends React.Component {
     e.preventDefault();
     const movie = this.findSelectedMovieObj()
     if (movie.title.toLowerCase().includes(this.state.answerInput.toLowerCase())){
-      this.setState((prevState) => ({
+      this.setState((prevState) => {
+        return {
         points: prevState.points + 10,
         selectedMovieId: null,
         answerInput: '',
-        selectedHints: [],
-        alertStatus: 'correct'
-        })
-      )
+        selectedHints: []}
+      },()=>this.props.alert.show('Correct! Nice Job!',{type:"success"}))
     } else {
       // alert.show('Oh look, an alert!')
+      console.log("in heresfasdf");
       this.setState((prevState) => {
-        return {...prevState,
+         return {
           selectedMovieId: null,
           answerInput: '',
-          selectedHints: [],
-          alertStatus: 'incorrect'
-         }
-      })
+          selectedHints: []}
+      },()=>this.props.alert.show('Oof must have been a typo',{type:"error"}))
     }
     this.props.handleNextMovieIndex()
-    // debugger;
-  }
-  componentDidMount(){
-    let timeID = setInterval(()=>{
-      this.setState(()=>{
-        return {timer: this.state.timer + 1}
-      })
-    },1000)
-    this.setState({timerID:timeID})
   }
   handleHint = (hintNum) => {
     if (!this.state.selectedHints.includes(hintNum)) {
@@ -97,14 +93,14 @@ class GameContainer extends React.Component {
             />:null}
         </div>
           <PopBar score={this.state.points}/>
-
       </div>
     )
   }
 }
 
-
+// console.log(this.props.alert);
+// return this.props.alert.show('Oh look, an alert!')
 // <Alert>
 // {(alert)=>this.displayAlert(alert)}
 // </Alert>
-export default GameContainer;
+export default withAlert(GameContainer);
