@@ -48,8 +48,6 @@ class MoviesContainer extends Component {
     this.setState({currentPage: newView})
   }
 
-
-
   render() {
     return (
       <div className="Movies-Container">

@@ -4,7 +4,7 @@ import { Image } from 'grommet';
 
 function Movie({movie, handleSelectMovie}) {
   return (
-    <div height="400px" onClick={()=> handleSelectMovie(movie.id)}>
+    <div initialSlideHeight='500px' onClick={()=> handleSelectMovie(movie.id)}>
       <h4>{movie.content}</h4>
     </div>
   )
