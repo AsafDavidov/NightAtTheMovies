@@ -6,7 +6,7 @@ The backend is Ruby on Rails and the frontend uses React.js.
 ## Setup Instructions
 In order to setup this game an API Key is needed from the MovieQuotes ruby gem.
 
-first cd into backend/night-at-the-movies.
-run bundle and rails s -p 4000
-then cd into frontend/night-at-the-movies-client
-here run npm-install && npm start in terminal and you should be good to go. Have Fun!
+ * first cd into backend/night-at-the-movies.
+ * run bundle and rails s -p 4000
+ * then cd into frontend/night-at-the-movies-client
+ * here run npm-install && npm start in terminal and you should be good to go. Have Fun!

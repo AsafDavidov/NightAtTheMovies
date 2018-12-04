@@ -1,6 +1,5 @@
 import React from 'react';
 // import {Grid, Image} from 'semantic-ui-react';
-import { Image } from 'grommet';
 
 function Movie({movie, handleSelectMovie}) {
   return (
