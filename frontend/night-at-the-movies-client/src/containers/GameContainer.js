@@ -70,49 +70,17 @@ class GameContainer extends React.Component {
   findSelectedMovieObj = () => {
     return this.props.movies.find(movie => movie.id === this.state.selectedMovieId);
   }
-<<<<<<< HEAD
+
   handleStopTime = () => {
     clearInterval(this.state.timerID)
   }
-  render() {
-    return (
-      <div className="GameContainer">
-      <h1>GameContainer Page</h1>
-      <Timer time={this.state.timer}
-      handleStopTime={this.handleStopTime}
-      />
-      <MovieCarousel
-      movies={this.props.movies}
-      handleSelectMovie={this.handleSelectMovie}
-      selectedMovieId={this.state.selectedMovieId}
-      />
-      {this.state.selectedMovieId ? <MovieDetails
-        movie={this.findSelectedMovieObj()}
-        answerInput={this.state.answerInput}
-        handleAnswer={this.handleAnswer}
-        handleSubmit={this.handleSubmit}
-        handleHint={this.handleHint}
-        selectedHints={this.state.selectedHints}
-        /> : null}
-        <PopBar score={this.state.currentScore}/>
-=======
-
-  // displayAlert = (alert) => {
-  //     let currentStatus = this.state.alertStatus
-  //     this.setState({alertStatus:null},alert.show('oh lookey an alert', {type:"success"}))
-  //      if (this.state.alertStatus === 'correct') {
-  //         alert.show('oh lookey an alert', {type:"success"})
-  //       }else if (this.state.alertStatus === 'incorrect') {
-  //         console.log("here2");
-  //         alert.show('oh lookey an alert2', {type:"success"})
-  //       } else return null
-  // }
 
   render() {
     return (
       <div className="GameContainer">
         <h1>GameContainer Page</h1>
-        <Timer />
+        <Timer time={this.state.timer}
+        handleStopTime={this.handleStopTime}/>
         <MovieCarousel
         movies={this.props.movies}
         handleSelectMovie={this.handleSelectMovie}
@@ -129,7 +97,7 @@ class GameContainer extends React.Component {
             />:null}
         </div>
           <PopBar score={this.state.points}/>
->>>>>>> 923f0a86fafbd2c293880d093cdcacbf622a3cd5
+
       </div>
     )
   }
