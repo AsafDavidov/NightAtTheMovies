@@ -22,14 +22,14 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
 .movie-quote-div{
   width: 80%;
   text-align: center;
@@ -65,6 +65,7 @@
     background-size: 50px;
     border-radius: 8px;
     cursor: pointer;
+
 }
 
 .pop-slider::-moz-range-thumb {
@@ -76,4 +77,14 @@
     background-position: center;
     border-radius: 8px;
     cursor: pointer;
+    
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
