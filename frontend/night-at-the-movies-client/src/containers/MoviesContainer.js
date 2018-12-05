@@ -35,9 +35,9 @@ class MoviesContainer extends Component {
       .then(data => this.setState({movies: data}))
   }
 
-  postGameStat = () => {
-    let data = {user_id: this.props.user.id, time_taken: this.state.latestScore}
-    
+  postGameStat = (points) => {
+    let data = {user_id: this.props.user.id, time_taken: this.state.latestScore, points: points}
+
     fetch(GAME_URL, {
       method: 'POST',
       headers: {"Content-Type": "application/json; charset=utf-8"},
@@ -59,9 +59,9 @@ class MoviesContainer extends Component {
     this.setState((prevState) => ({movieIndex: prevState.movieIndex + 5}))
   }
 
-  handleLatestScore = (newScore) => {
+  handleLatestScore = (newScore, points) => {
     this.setState({latestScore: newScore}, ()=>{
-      this.postGameStat()
+      this.postGameStat(points)
       this.changeView('home')
     })
   }
@@ -81,7 +81,7 @@ class MoviesContainer extends Component {
           </div>
         );
       case 'stats':
-        return <ViewStats />
+        return <ViewStats user={this.props.user}/>
       case 'game':
         return (
           <AlertProvider template={AlertTemplate} {...options}>

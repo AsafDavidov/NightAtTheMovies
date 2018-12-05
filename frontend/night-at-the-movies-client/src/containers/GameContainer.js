@@ -55,9 +55,7 @@ class GameContainer extends React.Component {
           selectedHints: [],
           questionsAnswered: prevState.questionsAnswered + 1}
       },()=>{
-        console.log("hit incorrect");
         this.props.alert.show('Oof must have been a typo',{type:"error"})
-        console.log(this.state.questionsAnswered);
         if (this.state.questionsAnswered === 5 || this.state.points === 100) {
           this.handleStopTime()
         }})
@@ -81,7 +79,7 @@ class GameContainer extends React.Component {
 
   handleStopTime = () => {
     clearInterval(this.state.timerID)
-    this.props.handleLatestScore(this.state.timer)
+    this.props.handleLatestScore(this.state.timer, this.state.points)
   }
 
   render() {
