@@ -4,7 +4,7 @@ import React from 'react';
 function Movie({movie, handleSelectMovie}) {
   return (
     <div className="movie-quote-div" onClick={()=> handleSelectMovie(movie.id)}>
-      <h4 className="movie-quote">{movie.content}</h4>
+      <h4 className="movie-quote">{movie.content.length > 500 ? movie.content.substring(0, 500)+'...' : movie.content}</h4>
     </div>
   )
 }

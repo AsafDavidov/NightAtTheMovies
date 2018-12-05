@@ -58,7 +58,7 @@ class ViewStats extends React.Component {
 
   componentDidMount() {
     fetch(`${USER_URL}/${this.props.user.id}`).then(r=>r.json())
-    .then(games => this.setState({games: games,loaded:true}))
+    .then(games => this.setState({games: games.reverse(),loaded:true}))
   }
 
   resetStats = () => {

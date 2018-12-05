@@ -67,7 +67,8 @@ class MoviesContainer extends Component {
   }
 
   displayScore = () => {
-    return this.state.latestScore ? <h1>Your latest score is: {this.state.latestScore}</h1> : null
+
+    return this.state.latestScore ? <div><h1>That's All Folks!</h1><h1>Your latest score is: {this.state.latestScore}</h1></div> : null
   }
 
   displayView = () => {
