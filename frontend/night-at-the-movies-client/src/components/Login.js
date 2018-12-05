@@ -2,20 +2,6 @@ import React from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 import {Grommet} from 'grommet';
 
-// popcorn png image: https://www.flaticon.com/free-icon/popcorn_705062
-
-// Grommet theme - modify & use if we want to change styling on the form
-// const theme = {
-//   global: {
-//     font: {
-//       family: 'Roboto',
-//       size: '14px',
-//       height: '20px',
-//     },
-//   },
-// };
-
-
 
 function Login(props) {
   return (
