@@ -47,7 +47,7 @@ class ViewStats extends React.Component {
   displayStats = () => {
     if (this.state.games.length > 0) {
       return (
-        <div>
+        <div style={{textAlign: '-webkit-center'}}>
         <h1>{this.props.user.name}'s Game History</h1>
         <Table caption='Simple Table'>
         <TableHeader>
