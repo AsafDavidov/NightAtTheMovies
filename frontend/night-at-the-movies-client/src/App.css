@@ -1,3 +1,7 @@
+/* @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext'); */
+
+@import url('https://fonts.googleapis.com/css?family=Ewert&font-effect-neon')
+
 .App {
   text-align: center;
 }
@@ -77,8 +81,10 @@
     background-position: center;
     border-radius: 8px;
     cursor: pointer;
-    
+
 }
+
+
 
 @keyframes App-logo-spin {
   from {
@@ -87,4 +93,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/******** NAV BAR HEADER *******/
+.NavBar-header {
+  font-family: 'Monoton', cursive;
+  font-size: 50px;
+}
+
+.Hint-1 {
+  font-family: 'Monoton', cursive;
 }
