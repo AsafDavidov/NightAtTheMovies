@@ -30,15 +30,28 @@
     transform: rotate(360deg);
   }
 } */
-.movie-quote-div{
+
+.game-container {
   width: 80%;
+  margin: auto;
   text-align: center;
-  padding-right: 50px;
-  padding-left: 250px;
+  padding-top: 20px;
+}
+
+.movie-quote-div{
+  width: 60%;
+  margin: auto;
+  text-align: center;
+  padding-top: 50px;
 }
 .slider-control-bottomcenter{
   padding-top: 20px;
 }
+
+.slider-list {
+    height: 250px!important;
+}
+
 .pop-slidecontainer {
     width: 100%;
     text-align: center;

@@ -74,10 +74,10 @@ class MoviesContainer extends Component {
     switch (this.state.currentPage) {
       case 'home':
         return (
-          <div>
+          <div style={{paddingTop: 150}}>
             {this.displayScore()}
-            <Button label="View Stats"onClick={()=>this.changeView('stats')}/>
-            <Button label="Start Game"onClick={()=>this.changeView('game')}/>
+            <Button label="View Stats"onClick={()=>this.changeView('stats')} style={{padding: 50, margin: 30}}/>
+            <Button label="Start Game"onClick={()=>this.changeView('game')} style={{padding: 50, margin: 30}}/>
           </div>
         );
       case 'stats':

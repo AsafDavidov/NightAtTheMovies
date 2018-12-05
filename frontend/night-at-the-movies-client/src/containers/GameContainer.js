@@ -83,7 +83,7 @@ class GameContainer extends React.Component {
 
   render() {
     return (
-      <div className="GameContainer">
+      <div className="game-container">
         <Timer time={this.state.timer}
         handleStopTime={this.handleStopTime}/>
         <MovieCarousel
@@ -91,7 +91,7 @@ class GameContainer extends React.Component {
         handleSelectMovie={this.handleSelectMovie}
         selectedMovieId={this.state.selectedMovieId}
         />
-        <div>
+        <div className="game-container">
           {this.state.selectedMovieId ? <MovieDetails
             movie={this.findSelectedMovieObj()}
             answerInput={this.state.answerInput}
