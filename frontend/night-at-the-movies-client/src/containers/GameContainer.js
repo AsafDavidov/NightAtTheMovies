@@ -85,7 +85,6 @@ class GameContainer extends React.Component {
   render() {
     return (
       <div className="GameContainer">
-        <h1>GameContainer Page</h1>
         <Timer time={this.state.timer}
         handleStopTime={this.handleStopTime}/>
         <MovieCarousel

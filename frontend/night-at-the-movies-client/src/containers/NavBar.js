@@ -1,8 +1,7 @@
 import React from 'react';
 import {Menu} from 'semantic-ui-react';
 import './NavBar.css';
-import { BrowserRouter as Router, Route, Link, Redirect, NavLink, withRouter } from "react-router-dom";
-import {withRouter} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, Redirect, NavLink, withRouter } from "react-router-dom"
 
 function NavBar() {
   return (
@@ -32,4 +31,4 @@ function NavBar() {
 // }
 
 
-export default withRouter(NavBar);
+export default NavBar;
