@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   def show
     games = Game.where(user_id: params[:id])
-    formatted_games = games.map{|g| {id: g.id, time_taken: g.time_taken, points: g.points, date: Date.parse(g.created_at.to_s), ticket: g.points == 100 ? 'YAY!' : 'NAY...'}}
+    formatted_games = games.map{|g| {id: g.id, time_taken: g.time_taken, points: g.points, date: Date.parse(g.created_at.to_s).strftime("%D"), ticket: g.points == 100 ? 'YAY!' : 'NAY...'}}
     render json: formatted_games, status: :ok
   end
 

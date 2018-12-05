@@ -44,7 +44,7 @@ class GameContainer extends React.Component {
       },()=>{
         this.props.alert.show('Correct! Nice Job!',{type:"success"})
         if (this.state.questionsAnswered === 5 || this.state.points === 100) {
-          this.handleStopTime()
+          this.handleStopTime("success")
         }})
 
     } else {
@@ -57,7 +57,7 @@ class GameContainer extends React.Component {
       },()=>{
         this.props.alert.show('Oof must have been a typo',{type:"error"})
         if (this.state.questionsAnswered === 5 || this.state.points === 100) {
-          this.handleStopTime()
+          this.handleStopTime("error")
         }})
     }
     this.props.handleNextMovieIndex()
@@ -69,7 +69,6 @@ class GameContainer extends React.Component {
   }
 
   handleSelectMovie = (id) => {
-    console.log('in handleSelectMovie', id);
     this.setState({selectedMovieId: id, selectedHints: [], alertStatus: null})
   }
 
@@ -77,7 +76,7 @@ class GameContainer extends React.Component {
     return this.props.movies.find(movie => movie.id === this.state.selectedMovieId);
   }
 
-  handleStopTime = () => {
+  handleStopTime = (status) => {
     clearInterval(this.state.timerID)
     this.props.handleLatestScore(this.state.timer, this.state.points)
   }

@@ -35,7 +35,8 @@ class ViewStats extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`${USER_URL}/${this.props.user.id}`).then(r=>r.json()).then(games => this.setState({games: games}))
+    fetch(`${USER_URL}/${this.props.user.id}`).then(r=>r.json())
+    .then(games => this.setState({games: games}))
   }
 
   resetStats = () => {
@@ -49,7 +50,7 @@ class ViewStats extends React.Component {
       return (
         <div style={{textAlign: '-webkit-center'}}>
         <h1>{this.props.user.name}'s Game History</h1>
-        <Table caption='Simple Table'>
+        <Table margin="large"caption='Simple Table'>
         <TableHeader>
         <TableRow>
         {COLUMNS.map(c => (
