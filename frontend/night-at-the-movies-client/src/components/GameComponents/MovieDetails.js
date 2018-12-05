@@ -15,7 +15,7 @@ const showHint = (array, movie) => {
 
   return array.map((hint, index) => {
     if (hint === 1) {
-      return <p style={{fontFamily: 'Monoton'}} key={index}>CHARACTERS: {movie.character}</p>
+      return <p style={{fontFamily: 'Monoton', marginTop: 10}} key={index}>CHARACTERS: {movie.character}</p>
     } else if (hint === 2) {
       return <p style={{fontFamily: 'Monoton'}} key={index}>YEAR: {movie.year}</p>
     } else if (hint === 3) {
@@ -35,6 +35,7 @@ function MovieDetails({movie, answerInput, handleAnswer, handleSubmit, handleHin
     <Button className="Hint-1" style={{fontFamily: 'Monoton', backgroundColor: '#be8fd6'}} label="Hint 1" onClick={()=>handleHint(1)}/>
     <Button className="Hint-2" style={{fontFamily: 'Monoton', backgroundColor: '#be8fd6'}} label="Hint 2" onClick={()=>handleHint(2)}/>
     <Button style={{fontFamily: 'Monoton', backgroundColor: '#be8fd6'}} className="Hint-3" label="Hint 3" onClick={()=>handleHint(3)}/>
+    <br></br>
     {showHint(selectedHints, movie)}
     <h4 style={{fontFamily: 'Bungee Shade'}}>What is the title of the movie this quote belongs to?</h4>
     <Box flex="grow" overflow="auto" pad={{ vertical: "medium" }}>
