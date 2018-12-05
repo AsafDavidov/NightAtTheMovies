@@ -4,7 +4,6 @@ import {
   Text, Button
 } from 'grommet';
 import Loader from 'react-loader';
-import { Header, Table } from 'semantic-ui-react';
 const BASE = 'http://localhost:4000/api/v1/'
 const USER_URL = BASE+'users'
 const loaderOptions = {
