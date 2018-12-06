@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ViewStats from '../components/ViewStats';
 import GameContainer from './GameContainer';
 import { Button } from 'grommet';
@@ -6,8 +6,8 @@ import { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 
 const BASE = 'http://localhost:4000/api/v1/'
-const MOVIE_URL = BASE+'movie_quotes'
-const GAME_URL = BASE+'games'
+const MOVIE_URL = BASE + 'movie_quotes'
+const GAME_URL = BASE + 'games'
 
 const options = {
   position: 'bottom center',
@@ -25,22 +25,22 @@ class MoviesContainer extends Component {
     latestScore: null
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.fetchAllMovies()
   }
 
   fetchAllMovies = () => {
     fetch(MOVIE_URL)
       .then(resp => resp.json())
-      .then(data => this.setState({movies: data}))
+      .then(data => this.setState({ movies: data }))
   }
 
   postGameStat = (points) => {
-    let data = {user_id: this.props.user.id, time_taken: this.state.latestScore, points: points}
+    let data = { user_id: this.props.user.id, time_taken: this.state.latestScore, points: points }
 
     fetch(GAME_URL, {
       method: 'POST',
-      headers: {"Content-Type": "application/json; charset=utf-8"},
+      headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify(data)
     })
   }
@@ -49,18 +49,18 @@ class MoviesContainer extends Component {
     let startIndex = this.state.movieIndex
     if (startIndex === 200) {
       startIndex = 0
-      this.setState({movieIndex: 0})
+      this.setState({ movieIndex: 0 })
     }
     let endIndex = this.state.movieIndex + 5
     return this.state.movies.slice(startIndex, endIndex)
   }
 
   handleNextMovieIndex = () => {
-    this.setState((prevState) => ({movieIndex: prevState.movieIndex + 5}))
+    this.setState((prevState) => ({ movieIndex: prevState.movieIndex + 5 }))
   }
 
   handleLatestScore = (newScore, points) => {
-    this.setState({latestScore: newScore}, ()=>{
+    this.setState({ latestScore: newScore }, () => {
       this.postGameStat(points)
       this.changeView('home')
     })
@@ -75,25 +75,25 @@ class MoviesContainer extends Component {
     switch (this.state.currentPage) {
       case 'home':
         return (
-          <div style={{paddingTop: 150, textAlign: 'center'}}>
+          <div style={{ paddingTop: 150, textAlign: 'center' }}>
             {this.displayScore()}
-            <Button label="View Stats" onClick={()=>this.changeView('stats')} style={{padding: 50, margin: 30, fontFamily: 'Monoton'}}/>
-            <Button label="Start Game" onClick={()=>this.changeView('game')} style={{padding: 50, margin: 30, fontFamily: 'Monoton'}}/>
+            <Button label="View Stats" onClick={() => this.changeView('stats')} style={{ padding: 50, margin: 30, fontFamily: 'Monoton' }} />
+            <Button label="Start Game" onClick={() => this.changeView('game')} style={{ padding: 50, margin: 30, fontFamily: 'Monoton' }} />
           </div>
         );
       case 'stats':
-        return <ViewStats user={this.props.user}/>
+        return <ViewStats />
       case 'game':
         return (
           <AlertProvider template={AlertTemplate} {...options}>
-            <GameContainer movies={this.moviesToDisplay()} handleNextMovieIndex={this.handleNextMovieIndex} handleLatestScore={this.handleLatestScore}/>
+            <GameContainer movies={this.moviesToDisplay()} handleNextMovieIndex={this.handleNextMovieIndex} handleLatestScore={this.handleLatestScore} />
           </AlertProvider>
         )
     }
   }
 
   changeView = (newView) => {
-    this.setState({currentPage: newView})
+    this.setState({ currentPage: newView })
   }
 
   render() {
